@@ -1,0 +1,10 @@
+/* Some boilerplate styling to make sure there's no weird spaces in our templates */
+
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
