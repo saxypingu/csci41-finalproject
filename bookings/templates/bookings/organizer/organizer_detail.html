@@ -1,1 +1,20 @@
-<!-- This will show the details of an Organizer instance. -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ organizer.name }}</title>
+    </head>
+
+    <body>
+        <h1>{{ organizer.name }}</h1>
+        <p><strong>Type:</strong> {{ organizer.organizer_type }}</p>
+        <p><strong>Address:</strong> {{ organizer.address }}</p>
+        <p><strong>Contact Person:</strong> {{ organizer.contact_person_name }}</p>
+        <p><strong>Contact Email:</strong> {{ organizer.contact_person_email }}</p>
+        <p><strong>Contact Number:</strong> {{ organizer.contact_person_phone }}</p>
+
+        <a href="{% url 'organizer_list' %}">Organizer List</a>  
+    </body>
+    
+</html>
