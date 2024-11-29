@@ -1,1 +1,20 @@
-<!-- This will display a participant's details. -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Participant Information</title>
+    </head>
+
+    <body>
+        <h1>{{ participant.name }}</h1>
+        <p><strong>ID NUMBER:</strong> {{ participant.id_number }}</p>
+        <p><strong>Birth Date:</strong> {{ participant.birth_date }}</p>
+        <p><strong>Department:</strong> {{ participant.department }}</p>
+        <p><strong>Participant Type:</strong> {{ participant.participant_type }}</p>
+
+        
+        <a href="{% url 'participant_list' %}">Participants List</a>  
+    </body>
+    
+</html>

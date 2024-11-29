@@ -2,6 +2,8 @@
 from django.urls import path
 from .views import TestView, OrganizerCreateView, OrganizerListView, OrganizerDetailView
 from .views import ActivityCreateView, ActivityListView, ActivityDetailView
+from .views import ParticipantCreateView, ParticipantListView, ParticipantDetailView
+
 
 urlpatterns = [
     path('test/', TestView.as_view(), name='test_view'),
@@ -10,5 +12,10 @@ urlpatterns = [
     path('organizer/<int:organizer_id>/', OrganizerDetailView.as_view(), name='organizer_detail'),
     path('activities/', ActivityListView.as_view(), name='activity_list'),
     path('activity/create/', ActivityCreateView.as_view(), name='activity_create'),
-    path('activity/<int:activity_id>/', ActivityDetailView.as_view(), name='activity_detail')
+    path('activity/<int:activity_id>/', ActivityDetailView.as_view(), name='activity_detail'),
+
+    path('participants/', ParticipantListView.as_view(), name='participant_list'),
+    path('participant/create/', ParticipantCreateView.as_view(), name='participant_create'),
+    path('participant/<int:activity_id>/', ParticipantDetailView.as_view(), name='participant_detail')
+    
 ]
