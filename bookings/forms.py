@@ -10,3 +10,12 @@ class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ['organizer', 'name', 'location', 'date', 'start_time', 'end_time', 'expected_participants']
+        widgets = {
+            'organizer': forms.Select(attrs={'placeholder': 'Select organizer'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter activity name'}),
+            'location': forms.TextInput(attrs={'placeholder': 'Enter activity location'}),
+            'date': forms.DateInput(attrs={'placeholder': 'YYYY-MM-DD', 'type': 'date'}),
+            'start_time': forms.TimeInput(attrs={'placeholder': 'HH:MM', 'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'placeholder': 'HH:MM', 'type': 'time'}),
+            'expected_participants': forms.NumberInput(attrs={'placeholder': 'Enter expected participants'}),
+        }

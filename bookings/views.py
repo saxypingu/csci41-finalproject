@@ -7,13 +7,6 @@ from django.shortcuts import get_object_or_404
 from .models import Organizer, Activity
 from .forms import OrganizerForm, ActivityForm
 
-class TestView(View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse("This is a GET response from the TestView!", content_type="text/plain")
-
-    def post(self, request, *args, **kwargs):
-        return HttpResponse("POST requests are not yet implemented.", content_type="text/plain", status=400)
-
 class OrganizerCreateView(View):    
     def get(self, request, *args, **kwargs):
         form = OrganizerForm()
