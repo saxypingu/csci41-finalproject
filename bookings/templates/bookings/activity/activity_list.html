@@ -1,1 +1,20 @@
-<!-- This HTML file should be the content block containing visual representations of all the Activity instances, each accompanied by a Book Activity button that is connected to a CREATE Booking view via URL. -->
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Activity List</title>
+	</head>
+
+	<body>
+		<ul>
+            {% for activity in activities %}
+                <li>
+                    <a href="{% url 'activity_detail' activity.id %}">{{ activity.name }} ({{ activity.date }})</a>
+                </li>
+            {% endfor %}
+        </ul>
+		<a href="{% url 'activity_create' %}">Create Activity</a>
+	</body>
+
+</html>

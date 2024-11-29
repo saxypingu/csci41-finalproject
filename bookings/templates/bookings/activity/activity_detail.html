@@ -1,1 +1,21 @@
-<!-- This will show the details of an Activity instance. -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ activity.name }}</title>
+    </head>
+
+    <body>
+        <h1>{{ activity.name }}</h1>
+        <p><strong>Location:</strong> {{ activity.location }}</p>
+        <p><strong>Date:</strong> {{ activity.date }}</p>
+        <p><strong>Start Time:</strong> {{ activity.start_time }}</p>
+        <p><strong>End Time:</strong> {{ activity.end_time }}</p>
+        <p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
+        <p><strong>Organizer:</strong> {{ activity.organizer.name }}</p>
+
+        <a href="{% url 'activity_list' %}">Activity List</a>  
+    </body>
+    
+</html>

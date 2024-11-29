@@ -1,1 +1,18 @@
-<!-- This HTML file is a form for CREATING/UPDATING Activity instances. -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Activity</title>
+    </head>
+
+    <body>
+        <h1>Create New Activity</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </body>
+    
+</html>
