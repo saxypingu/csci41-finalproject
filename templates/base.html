@@ -1,1 +1,38 @@
-<!-- TODO: Add navigation, header, and footer -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}Central Bookings{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav>
+			<a href="{% url 'activity_list' %}" class="logo">Central Bookings</a>
+			<ul>
+				<a href=""><li>Activities</li></a>
+				<a href=""><li>Organizers</li></a>
+			</ul>
+		</nav>
+
+		<!-- Main Content -->
+		<main>
+			<div class="container">
+				{% block content %}
+				<!-- Page-specific content will go here -->
+				{% endblock %}
+			</div>
+		</main>
+
+		{% comment %}
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<p>&copy; {{ current_year|default:2024 }} My Django App. All rights reserved.</p>
+			</div>
+		</footer>
+		{% endcomment %}
+	</body>
+</html>
