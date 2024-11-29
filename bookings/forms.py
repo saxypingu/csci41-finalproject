@@ -1,5 +1,5 @@
 from django import forms
-from .models import Organizer, Activity
+from .models import Organizer, Organizer_Details, Activity
 
 class OrganizerForm(forms.ModelForm):
     class Meta:
