@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Organizer List</title>
+	</head>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Organizer List</title>
-    </head>
-
-    <body>
-        <h1>Organizer List</h1>
-        <ul>
-            {% for organizer in organizers %}
-                <li>
-                    <strong>{{ organizer.name }}</strong><br>
-                    Type: {{ organizer.organizer_type }}<br>
-                    Address: {{ organizer.address }}<br>
-                    Contact Person: {{ organizer.contact_person_name }}<br>
-                    Email: {{ organizer.contact_person_email }}<br>
-                    Phone: {{ organizer.contact_person_phone }}<br>
-                    {% if organizer.id %}
-                        <a href="{% url 'organizer_detail' organizer.id %}">View Details</a>
-                    {% else %}
-                        <p>No ID available for this organizer.</p>
-                    {% endif %}
-                </li>
-                <hr>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'organizer_create' %}">Create Organizer</a>
-    </body>
-
+	<body>
+		<h1>Organizer List</h1>
+		<ul>
+			{% for organizer in organizers %}
+			<li>
+				<strong>{{ organizer.name }}</strong><br />
+				Type: {{ organizer.organizer_type }}<br />
+				Address: {{ organizer.address }}<br />
+				Contact Person: {{ organizer.contact_person_name }}<br />
+				Email: {{ organizer.contact_person_email }}<br />
+				Phone: {{ organizer.contact_person_phone }}<br />
+				{% if organizer.organizer_id %}
+				<a href="{% url 'organizer_detail' organizer.organizer_id %}">View Details</a>
+				{% else %}
+				<p>No ID available for this organizer.</p>
+				{% endif %}
+			</li>
+			<hr />
+			{% endfor %}
+		</ul>
+		<a href="{% url 'organizer_create' %}">Create Organizer</a>
+	</body>
 </html>
