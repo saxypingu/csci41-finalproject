@@ -1,5 +1,5 @@
 from django import forms
-from .models import Organizer, Activity_Details
+from .models import Organizer, Contact_Person, Activity
 
 # class OrganizerForm(forms.ModelForm):
 #     class Meta:
@@ -9,17 +9,22 @@ from .models import Organizer, Activity_Details
 class OrganizerForm(forms.ModelForm):
     class Meta:
         model = Organizer
-        fields = ['name', 'organizer_type', 'address', 'contact_email','contact_name','contact_phone']
+        fields = ['name', 'organizer_type', 'address']
+        
+class ContactPersonForm(forms.ModelForm):
+    class Meta:
+        model = Contact_Person
+        fields = ['contact_email', 'contact_name', 'contact_phone']
 
 
 class ActivityForm(forms.ModelForm):
     class Meta:
-        model = Activity_Details
-        fields = ['name', 'location', 'date', 'start_time','end_time']
+        model = Activity
+        fields = ['organizer', 'name', 'location', 'date', 'start_time','end_time', 'expected_participants']
         widgets = {
             'organizer': forms.Select(attrs={'placeholder': 'Select organizer'}),
             'name': forms.TextInput(attrs={'placeholder': 'Enter activity name'}),
-            'location': forms.TextInput(attrs={'placeholder': 'Enter activity location'}),
+            'location': forms.Select(attrs={'placeholder': 'Select location'}),
             'date': forms.DateInput(attrs={'placeholder': 'YYYY-MM-DD', 'type': 'date'}),
             'start_time': forms.TimeInput(attrs={'placeholder': 'HH:MM', 'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'placeholder': 'HH:MM', 'type': 'time'}),
