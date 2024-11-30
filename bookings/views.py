@@ -26,8 +26,29 @@ class OrganizerListView(View):
 
 class OrganizerDetailView(View):
     def get(self, request, organizer_id, *args, **kwargs):
-        organizer = get_object_or_404(Organizer, pk=organizer_id) 
-        return render(request, 'bookings/organizer/organizer_detail.html', {'organizer': organizer})
+        organizer = get_object_or_404(Organizer, pk=organizer_id)
+        activities = Activity.objects.filter(organizer_id=organizer_id) 
+        return render(request, 'bookings/organizer/organizer_detail.html', {'organizer': organizer, 'activities': activities})
+
+class OrganizerUpdateView(View):
+    def get(self, request, organizer_id, *args, **kwargs):
+        organizer = get_object_or_404(Organizer, pk=organizer_id)
+        form = OrganizerForm(instance=organizer)
+        return render(request, 'bookings/organizer/organizer_form.html', {'form': form, 'organizer': organizer})
+
+    def post(self, request, organizer_id, *args, **kwargs):
+        organizer = get_object_or_404(Organizer, pk=organizer_id)
+        form = OrganizerForm(request.POST, instance=organizer)
+        if form.is_valid():
+            form.save()
+            return redirect('organizer_detail', organizer_id=organizer_id)
+        return render(request, 'bookings/organizer/organizer_form.html', {'form': form, 'organizer': organizer})
+
+class OrganizerDeleteView(View):
+    def post(self, request, organizer_id, *args, **kwargs):
+        organizer = get_object_or_404(Organizer, pk=organizer_id)
+        organizer.delete()
+        return redirect('organizer_list')
 
 class ActivityCreateView(View):    
     def get(self, request, *args, **kwargs):
