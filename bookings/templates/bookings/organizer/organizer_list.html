@@ -1,30 +1,48 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Organizer List</title>
+		<title>Activity List</title>
+		<link rel="stylesheet" href="{% static 'css/activity.css' %}" />
 	</head>
 
-	<body>
-		<h1>Organizer List</h1>
-		<ul>
-			{% for organizer in organizers %}
-			<li>
-				<strong>{{ organizer.name }}</strong><br />
-				Type: {{ organizer.organizer_type }}<br />
-				Address: {{ organizer.address }}<br />
-				Contact Person: {{ organizer.contact_person_name }}<br />
-				Email: {{ organizer.contact_person_email }}<br />
-				Phone: {{ organizer.contact_person_phone }}<br />
-				{% if organizer.organizer_id %}
-				<a href="{% url 'organizer_detail' organizer.organizer_id %}">View Details</a>
-				{% else %}
-				<p>No ID available for this organizer.</p>
-				{% endif %}
-			</li>
-			<hr />
-			{% endfor %}
-		</ul>
-		<a href="{% url 'organizer_create' %}">Create Organizer</a>
-	</body>
+	<div class="activity-list">
+		<body>
+			<div class="header">
+				<h1>Organizers</h1>
+
+				<a class="btn-with-icon" href="{% url 'organizer_create' %}">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="{1.5}" stroke="currentColor" className="size-6">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+					</svg>
+					<p>Create Organizer</p>
+				</a>
+			</div>
+
+			<ul>
+				{% for organizer in organizers %}
+				<li >
+                    <div class="li-container">
+					<div class="li-info">
+
+                        <div class="org-al-header">
+                            <a href="{% url 'organizer_detail' organizer.organizer_id %}"> <h2>{{ organizer.name }}</h2> </a>
+                            <div class="btn-container">
+						        <a href="{% url 'organizer_detail' organizer.organizer_id %}"><button>Explore Organizer</button></a>
+					        </div>
+                        </div>
+						
+					</div>
+                    
+
+				</li>
+
+				{% endfor %}
+			</ul>
+		</body>
+	</div>
 </html>
+
+{% endblock %}

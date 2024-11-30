@@ -1,0 +1,68 @@
+.organizer-info .detail-section {
+	display: flex;
+	flex-direction: column;
+	background-color: lavender;
+	padding: 1.5rem;
+	border-radius: 1rem;
+	position: relative;
+}
+
+.organizer-info .detail-section-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.organizer-info .detail-btn-container {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+a {
+	display: flex;
+	align-items: center;
+}
+
+.organizer-info .detail-btn-container button {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0px;
+}
+.organizer-info button {
+	border-style: none;
+}
+
+.organizer-info svg {
+	color: mediumpurple;
+}
+
+.organizer-info button {
+	border-style: none;
+}
+
+.organizer-info .activities-header {
+	text-align: center;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	font-size: 1rem;
+	color: mediumpurple;
+}
+
+.organizer-info .detail-info {
+	display: flex;
+	flex-direction: column;
+	line-height: 150%;
+}
+
+.organizer-info .detail-section hr {
+	border-color: mediumpurple;
+}

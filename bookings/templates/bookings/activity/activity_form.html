@@ -1,18 +1,31 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Create Activity</title>
+		<link rel="stylesheet" href="{% static 'css/activity.css' %}" />
+	</head>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Create Activity</title>
-    </head>
+	<div class="activity-form">
+		<body>
+			<h1>Create New Activity</h1>
+			<form method="POST">
+				{% csrf_token %} {{ form.as_p }}
 
-    <body>
-        <h1>Create New Activity</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Save</button>
-        </form>
-    </body>
-    
+				<div class="form-btn-container">
+					<a class="back-btn-container" href="{% url 'activity_list' %}"
+						><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+						</svg>
+						Go back to Activity List</a
+					>
+					<button type="submit">Save</button>
+				</div>
+			</form>
+		</body>
+	</div>
 </html>
+
+{% endblock %}
