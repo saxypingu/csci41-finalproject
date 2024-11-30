@@ -16,8 +16,18 @@
 		<p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
 		<p><strong>Organizer:</strong> {{ activity.organizer.name }}</p>
 
+		<hr>
+		<h1>Edit {{ activity.name }}</h1>
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Update</button>
+		</form>
+
 		<a href="{% url 'activity_list' %}">Activity List</a>
 	</body>
+
+	
 </html>
 
 {% endblock %}

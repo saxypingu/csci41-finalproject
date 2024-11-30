@@ -50,3 +50,23 @@ class ActivityDetailView(View):
     def get(self, request, activity_id, *args, **kwargs):
         activity = get_object_or_404(Activity, pk=activity_id)
         return render(request, 'bookings/activity/activity_detail.html', {'activity': activity})
+
+class ActivityUpdateView(View):
+    def get(self, request, activity_id, *args, **kwargs):
+        activity = get_object_or_404(Activity, pk=activity_id)
+        form = ActivityForm(instance=activity)
+        return render(request, 'bookings/activity/activity_form.html', {'form': form, 'activity': activity})
+
+    def post(self, request, activity_id, *args, **kwargs):
+        activity = get_object_or_404(Activity, pk=activity_id)
+        form = ActivityForm(request.POST, instance=activity)
+        if form.is_valid():
+            form.save()
+            return redirect('activity_detail', activity_id=activity.id)
+        return render(request, 'bookings/activity/activity_form.html', {'form': form, 'activity': activity})
+
+class ActivityDeleteView(View):
+    def post(self, request, activity_id, *args, **kwargs):
+        activity = get_object_or_404(Activity, pk=activity_id)
+        activity.delete()
+        return redirect('activity_list')
