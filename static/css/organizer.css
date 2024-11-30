@@ -39,6 +39,35 @@
 }
 
 /* Styles for the create organizer form */
+
+.organizer-form .btn-with-icon,
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    background-color: mediumpurple;  
+    height: auto;
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 100rem; 
+    border-style: none;
+    cursor: pointer;
+}
+
+.organizer-form .btn-with-icon:hover,
+button:hover {
+    background-color: rebeccapurple; 
+}
+
+.organizer-form .btn-with-icon > svg {
+    width: 2rem;  
+    margin-right: 8px; 
+    stroke-width: 1px;
+}
+
 .organizer-form form {
     background-color: whitesmoke;
     padding: 1rem;
