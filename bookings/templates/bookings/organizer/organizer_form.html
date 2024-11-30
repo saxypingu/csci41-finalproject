@@ -1,35 +1,31 @@
-{% extends "base.html" %}
-
-{% block content %}
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Create Organizer</title>
-        <link rel="stylesheet" href="{% static 'css/organizer.css' %}" />
-    </head>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Create Organizer</title>
+		<link rel="stylesheet" href="{% static 'css/organizer.css' %}" />
+	</head>
 
-    <div class="organizer-form">
-        <body>
-            <h1>Create New Organizer</h1>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
+	<div class="organizer-form">
+		<body>
+			<h1>Create New Organizer</h1>
+			<form method="POST">
+				{% csrf_token %} {{ form.as_p }}
 
-                <div class="form-btn-container">
-                    <a class="back-btn-container" href="{% url 'organizer_list' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                        </svg>
-                        Go back to Organizer List
-                    </a>
-                    <button type="submit">Save</button>
-                </div>
-            </form>
-        </body>
-    </div>
+				<div class="form-btn-container">
+					<a class="back-btn-container" href="{% url 'organizer_list' %}">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+						</svg>
+						Go back to Organizer List
+					</a>
+					<button type="submit">Save</button>
+				</div>
+			</form>
+		</body>
+	</div>
 </html>
 
 {% endblock %}

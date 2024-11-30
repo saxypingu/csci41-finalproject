@@ -74,6 +74,15 @@ a:visited {
 }
 
 hr {
-	margin-top: 1.25rem;
-	margin-bottom: 1.25rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	height: 1px;
+}
+
+svg {
+	width: 1.5rem !important;
+	height: 1.5rem;
+	padding: 0px !important;
+	border-width: 1px !important;
+	align-self: center !important;
 }
