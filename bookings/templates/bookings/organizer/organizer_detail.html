@@ -5,25 +5,42 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Activity List</title>
-		<link rel="stylesheet" href="{% static 'css/activity.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/organizer_info.css' %}" />
+        		<link rel="stylesheet" href="{% static 'css/activity.css' %}" />
+
 	</head>
 
-	<div class="activity-list">
+	<div class="organizer-info">
 		<body>
-			<div class="header">
-				<h1>{{ organizer.name }}</h1>
-                <p>{{ organizer.organizer_type }}</p>
-                <p>{{ organizer.address }}</p>
-                <p>{{ organizer.contact_person_name }}</p>
-                <p>{{ organizer.contact_person_email }}</p>
-                <p>{{ organizer.contact_person_phone }}</p>
+			<div class="detail-section">
 
-                <a class="btn-with-icon" href="{% url 'organizer_update' organizer.organizer_id %}">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                    </svg>
-                </a>
-                <a class="btn-with-icon">
+                <div class='detail-section-header'>
+                    <h1>{{ organizer.name }}</h1>
+                    
+                    
+
+
+                </div>
+
+
+                <div class='detail-info'>
+                    <p><strong>Type: </strong>{{ organizer.organizer_type }}</p>
+                    <p><strong>Address: </strong>{{ organizer.address }}</p>
+                    <p><strong>Contact Person: </strong>{{ organizer.contact_person_name }}</p>
+                    <p><strong>Contact Email: </strong>{{ organizer.contact_person_email }}</p>
+                    <p><strong>Contact Number: </strong>{{ organizer.contact_person_phone }}</p>
+                </div>
+               
+                <div class='detail-btn-container'>
+
+                        <a class="btn-with-icon" href="{% url 'organizer_update' organizer.organizer_id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+</svg>
+
+                    </a>
+                    
+                    <a class="btn-with-icon">
                     <form action="{% url 'organizer_delete' organizer.organizer_id %}" method="post">
                         {% csrf_token %}
                         <button type="submit" style="background: none;">
@@ -32,30 +49,49 @@
                             </svg>
                         </button>
                     </form>
-                </a>
+                    </a>
+                    </div>
 			</div>
 
-			<ul>
+
+            <p class='activities-header'>Activities organized by <strong>{{organizer.name}}</strong></p>
+
+
+
+            <div class=activity-list>
+<ul>
 				{% for activity in activities %}
 				<li>
                     <div class="li-container">
 					<div class="li-info">
-						<a href="{% url 'activity_detail' activity.id %}"> <h2>{{ activity.name }}</h2> </a>
+
+                        <div class="al-header">
+                            <a href="{% url 'activity_detail' activity.id %}"> <h2>{{ activity.name }}</h2> </a>
+                            <div class="btn-container">
+						        <a href=""><button>Book Activity</button></a>
+					        </div>
+                        </div>
 						<hr />
-						<p class="li-sub-info"><strong>{{activity.location}}</strong> | <strong>{{activity.date}} {{activity.start_time}} - {{activity.end_time}}</strong></p>
-						<p class="li-sub-info">Organized by <strong>{{activity.organizer.name}}</strong></p>
+	
+						<p class="li-sub-info"><strong>Organizer: </strong>{{activity.organizer.name}}</p>
+                        <p class="li-sub-info"><strong>Activity: </strong>{{activity.name}}</p>
+						<p class="li-sub-info"><strong>Location: </strong>{{activity.location}}</p>
+						<p class="li-sub-info"><strong>Date: </strong>{{activity.date}}</p>
+						<p class="li-sub-info"><strong>Start Time: </strong>{{activity.start_time}}</p>
+						<p class="li-sub-info"><strong>End Time: </strong>{{activity.end_time}}</p>
+						<p class="li-sub-info"><strong>Expected Participants: </strong>{{activity.expected_participants}}</p>
+
 					</div>
-					<div class="btn-container">
-						<a href=""><button>Book Activity</button></a>
-					</div>
+					
 
                     <div class="ud-btn" style="display: flex; align-items: center;">
 						
                         {% comment %} Edit Button {% endcomment %}
                         <a href="{% url 'activity_update' activity.id %}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                            </svg>
+  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+</svg>
+
                         </a>
                         {% comment %} Delete Button {% endcomment %}
                         <form action="{% url 'activity_delete' activity.id %}" method="post">
@@ -73,6 +109,10 @@
 
 				{% endfor %}
 			</ul>
+
+            </div>
+
+			
 		</body>
 	</div>
 </html>
