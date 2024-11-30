@@ -84,6 +84,67 @@ button:hover {
 	color: mediumpurple;
 }
 
+/* Styles for activity detail page */
+
+/* General Activity Detail Styles */
+.activity-detail {
+    background-color: whitesmoke;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.activity-detail-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.activity-detail-info {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.activity-detail-info p {
+    margin-bottom: 1rem;
+}
+
+.activity-detail-info strong {
+    color: rebeccapurple;
+}
+
+/* Button Styles */
+.activity-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.activity-btn-container .btn-with-icon {
+    display: flex;
+    align-items: center;
+    background-color: mediumpurple;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.activity-btn-container .btn-with-icon:hover {
+    background-color: rebeccapurple;
+}
+
+.activity-btn-container .btn-with-icon svg {
+    margin-right: 8px;
+    width: 1.5rem;
+    stroke-width: 1.5px;
+}
+
+
 .activity-form form {
 	background-color: whitesmoke;
 	padding: 1rem;
