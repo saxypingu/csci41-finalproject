@@ -1,33 +1,39 @@
-{% extends "base.html" %} {% block content %} {% load static %}
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>{{ activity.name }}</title>
-	</head>
 
-	<body>
-		<h1>{{ activity.name }}</h1>
-		<p><strong>Location:</strong> {{ activity.location }}</p>
-		<p><strong>Date:</strong> {{ activity.date }}</p>
-		<p><strong>Start Time:</strong> {{ activity.start_time }}</p>
-		<p><strong>End Time:</strong> {{ activity.end_time }}</p>
-		<p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
-		<p><strong>Organizer:</strong> {{ activity.organizer.name }}</p>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ activity.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/activity.css' %}">
+</head>
 
-		<hr>
-		<h1>Edit {{ activity.name }}</h1>
-		<form method="POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit">Update</button>
-		</form>
+<body>
+    <div class="activity-detail">
+        <h1 class="activity-detail-header">{{ activity.name }}</h1>
+        <div class="activity-detail-info">
+            <p><strong>Location:</strong> {{ activity.location }}</p>
+            <p><strong>Date:</strong> {{ activity.date }}</p>
+            <p><strong>Start Time:</strong> {{ activity.start_time }}</p>
+            <p><strong>End Time:</strong> {{ activity.end_time }}</p>
+            <p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
+            <p><strong>Organizer:</strong> {{ activity.organizer.name }}</p>
+        </div>
 
-		<a href="{% url 'activity_list' %}">Activity List</a>
-	</body>
+        <div class="activity-btn-container">
+            <a href="{% url 'activity_list' %}" class="btn-with-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>
+                </svg>
+                Back to Activity List
+            </a>
+        </div>
+    </div>
+</body>
 
-	
 </html>
 
 {% endblock %}
