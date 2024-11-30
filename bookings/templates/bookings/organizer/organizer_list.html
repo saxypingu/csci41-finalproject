@@ -13,9 +13,9 @@
 				<strong>{{ organizer.name }}</strong><br />
 				Type: {{ organizer.organizer_type }}<br />
 				Address: {{ organizer.address }}<br />
-				Contact Person: {{ organizer.contact_person_name }}<br />
-				Email: {{ organizer.contact_person_email }}<br />
-				Phone: {{ organizer.contact_person_phone }}<br />
+				Contact Person: {{ organizer.contact_name }}<br />
+				Email: {{ organizer.contact_email }}<br />
+				Phone: {{ organizer.contact_phone }}<br />
 				{% if organizer.organizer_id %}
 				<a href="{% url 'organizer_detail' organizer.organizer_id %}">View Details</a>
 				{% else %}
