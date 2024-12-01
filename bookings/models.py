@@ -34,7 +34,33 @@ class Manager(BaseUserManager):
         
         return self.create_user(email, id_number, name, password, **other_fields)
 
+class ParticipantUser(AbstractBaseUser, PermissionsMixin):
+    PARTICIPANT_TYPES = (
+        ('student', 'Student'),
+        ('staff', 'Staff'),
+        ('faculty', 'Faculty'),
+    )
 
+    email = models.EmailField(_('Email Address'), unique=True)
+    id_number = models.IntegerField(unique=True) # need to limit it pa to 6 integers only
+    name = models.CharField(max_length=200, blank=True)
+    birthday = models.DateField
+    department = models.CharField(max_length=200)
+    type = models.CharField(choices=PARTICIPANT_TYPES, max_length=20)
+
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    # is_superuser = models.BooleanField(default=False)
+
+
+    USERNAME_FIELD = 'email'
+    # EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['id_number']
+
+    objects = Manager()
+
+    def __str__(self):
+        return self.id_number
 
 
 class Organizer(models.Model):
@@ -64,6 +90,7 @@ class Activity(models.Model):
     
     class Meta:
         unique_together = ['name', 'date', 'organizer']  # to avoid duplicates
+        verbose_name_plural = "Activities"
 
 class Participant(models.Model):
     PARTICIPANT_TYPES = (
@@ -92,31 +119,3 @@ class Booking(models.Model):
 
     class Meta:
         unique_together = ['participant', 'activity']  # Each participant can book an activity only once
-
-class ParticipantUser(AbstractBaseUser, PermissionsMixin):
-    PARTICIPANT_TYPES = (
-        ('student', 'Student'),
-        ('staff', 'Staff'),
-        ('faculty', 'Faculty'),
-    )
-
-    email = models.EmailField(_('Email Address'), unique=True)
-    id_number = models.IntegerField(unique=True) # need to limit it pa to 6 integers only
-    name = models.CharField(max_length=200, blank=True)
-    birthday = models.DateField
-    department = models.CharField(max_length=200)
-    type = models.CharField(choices=PARTICIPANT_TYPES, max_length=20)
-
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
-    # is_superuser = models.BooleanField(default=False)
-
-
-    USERNAME_FIELD = 'email'
-    EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['id_number']
-
-    objects = Manager()
-
-    def __str__(self):
-        return self.id_number

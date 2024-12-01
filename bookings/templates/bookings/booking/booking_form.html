@@ -1,1 +1,20 @@
 <!-- This HTML file is a form for CREATING/UPDATING Booking instances.It is through this form that a participant will also created.-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Book this Activity</title>
+    </head>
+
+    <body>
+        <h1>Book this Activity</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </body>
+    
+</html>

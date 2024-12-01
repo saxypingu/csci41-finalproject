@@ -7,5 +7,5 @@ admin.site.register(Organizer)
 admin.site.register(Activity)
 admin.site.register(Participant)
 admin.site.register(Booking)
-# admin.site.register(ParticipantUser)
+admin.site.register(ParticipantUser)
 # admin.site.register

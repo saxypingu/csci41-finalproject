@@ -30,7 +30,7 @@
                         <div class="al-header">
                             <a href="{% url 'activity_detail' activity.id %}"> <h2>{{ activity.name }}</h2> </a>
                             <div class="btn-container">
-						        <a href=""><button>Book Activity</button></a>
+						        <a href="{% url 'booking_create' %}"><button>Book Activity</button></a>
 					        </div>
                         </div>
 						<hr />

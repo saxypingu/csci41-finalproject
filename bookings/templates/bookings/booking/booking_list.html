@@ -1,1 +1,26 @@
-<!-- This HTML file is for listing all the bookings. The content rendered here will depend on the returned objects of the view (e.g. bookings under a specific event or user), but format will generally be the same. -->
+<!-- This HTML file is for listing all the bookings. 
+ The content rendered here will depend on the returned objects 
+ of the view (e.g. bookings under a specific event or user), 
+ but format will generally be the same. -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+     <head>
+         <meta charset="UTF-8" />
+         <title>Participants List</title>
+     </head>
+ 
+     <body>
+         <ul>
+             {% for participant in participants %}
+                 <li>
+                     <a href="{% url 'participant_detail' participant.id %}">{{ participant.name }} </a>
+                 </li>
+             {% endfor %}
+         </ul>
+         <a href="{% url 'participant_create' %}">Create Participant</a>
+     </body>
+ 
+ </html>
+ 
