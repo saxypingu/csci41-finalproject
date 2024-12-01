@@ -1,14 +1,10 @@
 # urls.py in your app directory
 from django.urls import path
-<<<<<<< HEAD
-from .views import TestView, OrganizerCreateView, OrganizerListView, OrganizerDetailView
+from .views import OrganizerCreateView, OrganizerListView, OrganizerDetailView
 from .views import ActivityCreateView, ActivityListView, ActivityDetailView
 from .views import ParticipantCreateView, ParticipantListView, ParticipantDetailView
-
-=======
 from .views import OrganizerCreateView, OrganizerListView, OrganizerDetailView, OrganizerUpdateView, OrganizerDeleteView
 from .views import ActivityCreateView, ActivityListView, ActivityDetailView, ActivityUpdateView, ActivityDeleteView
->>>>>>> 6c7cf34e4bfab5adaceb157ab50d1c76a603eeb9
 
 urlpatterns = [
     path('organizers/', OrganizerListView.as_view(), name='organizer_list'),
@@ -20,14 +16,11 @@ urlpatterns = [
     path('activities/', ActivityListView.as_view(), name='activity_list'),
     path('activity/create/', ActivityCreateView.as_view(), name='activity_create'),
     path('activity/<int:activity_id>/', ActivityDetailView.as_view(), name='activity_detail'),
-<<<<<<< HEAD
 
     path('participants/', ParticipantListView.as_view(), name='participant_list'),
     path('participant/create/', ParticipantCreateView.as_view(), name='participant_create'),
-    path('participant/<int:activity_id>/', ParticipantDetailView.as_view(), name='participant_detail')
+    path('participant/<int:activity_id>/', ParticipantDetailView.as_view(), name='participant_detail'),
     
-=======
     path('activity/edit/<int:activity_id>', ActivityUpdateView.as_view(), name='activity_update'),
-    path('activity/delete/<int:activity_id>/', ActivityDeleteView.as_view(), name='activity_delete'),
->>>>>>> 6c7cf34e4bfab5adaceb157ab50d1c76a603eeb9
+    path('activity/delete/<int:activity_id>/', ActivityDeleteView.as_view(), name='activity_delete')
 ]

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'bookings'
 ]
 
+AUTH_USER_MODEL = 'bookings.ParticipantUser'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
