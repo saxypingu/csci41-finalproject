@@ -1,39 +1,38 @@
-{% extends "base.html" %}
-{% block content %}
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{{ activity.name }}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/activity.css' %}" />
+	</head>
 
-<head>
-    <meta charset="UTF-8" />
-    <title>{{ activity.name }}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/activity.css' %}">
-</head>
+	<body>
+		<div class="activity-detail">
+			<h1 class="activity-detail-header">{{ activity.name }}</h1>
+			<div class="activity-detail-info">
+				<p><strong>Location:</strong> {{ activity.location }}</p>
+				<p><strong>Date:</strong> {{ activity.date }}</p>
+				<p><strong>Start Time:</strong> {{ activity.start_time }}</p>
+				<p><strong>End Time:</strong> {{ activity.end_time }}</p>
+				<p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
+				<p class="li-sub-info">
+					<a href="{% url 'organizer_detail' activity.organizer.organizer_id %}"> <strong>Organizer: </strong>{{activity.organizer.name}}</a>
+				</p>
+			</div>
 
-<body>
-    <div class="activity-detail">
-        <h1 class="activity-detail-header">{{ activity.name }}</h1>
-        <div class="activity-detail-info">
-            <p><strong>Location:</strong> {{ activity.location }}</p>
-            <p><strong>Date:</strong> {{ activity.date }}</p>
-            <p><strong>Start Time:</strong> {{ activity.start_time }}</p>
-            <p><strong>End Time:</strong> {{ activity.end_time }}</p>
-            <p><strong>Expected Participants:</strong> {{ activity.expected_participants }}</p>
-            <p><strong>Organizer:</strong> {{ activity.organizer.name }}</p>
-        </div>
+			<div class="form-btn-container" style="display: flex; flex-direction: row; align-items: center">
+				<a class="back-btn-container" href="{% url 'activity_list' %}"
+					><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+					</svg>
 
-        <div class="activity-btn-container">
-            <a href="{% url 'activity_list' %}" class="btn-with-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>
-                </svg>
-                Back to Activity List
-            </a>
-        </div>
-    </div>
-</body>
-
+					<p>Go back to Activity List</p>
+				</a>
+			</div>
+		</div>
+	</body>
 </html>
 
 {% endblock %}

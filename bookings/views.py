@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from .models import Organizer, Activity
+from .models import Organizer, Activity, Participant, Booking
 from .forms import OrganizerForm, ActivityForm
 
 class OrganizerCreateView(View):    
@@ -91,3 +91,18 @@ class ActivityDeleteView(View):
         activity = get_object_or_404(Activity, pk=activity_id)
         activity.delete()
         return redirect('activity_list')
+    
+class ParticipantBookingsView(View):
+    def get(self, request, id_number, *args, **kwargs):
+        participant = get_object_or_404(Participant, id_number=id_number)
+        bookings = Booking.objects.filter(participant=participant) 
+
+        return render(request, 'bookings/participant/participant_detail.html', {'participant': participant, 'bookings': bookings})
+    
+
+class BookingDeleteView(View):
+    def post(self, request, booking_id, id_number, *args, **kwargs):
+        activity = get_object_or_404(Booking, pk=booking_id)
+        activity.delete()
+
+        return redirect('booking_summary', id_number=id_number)
