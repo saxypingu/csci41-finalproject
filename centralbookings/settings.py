@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookings'
+    'bookings',
+    'user'
 ]
 
 # AUTH_USER_MODEL = 'bookings.ParticipantUser'
@@ -140,4 +141,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'bookings.NewUser'
+AUTH_USER_MODEL = 'user.NewUser'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# LOGIN_REDIRECT_URL = "homepage"

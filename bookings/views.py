@@ -159,9 +159,3 @@ class BookingDetailView(View):
     def get(self, request, activity_id, *args, **kwargs):
         booking = get_object_or_404(Participant, pk=activity_id)
         return render(request, 'bookings/booking/booking_detail.html', {'booking': booking})
-
-# class Charm(View):
-#     def get(self, request, organizer_id, *args, **kwargs):
-#         organizer = get_object_or_404(Organizer, pk=organizer_id)
-#         activities = Activity.objects.filter(organizer_id=organizer_id) 
-#         return render(request, 'bookings/organizer/organizer_detail.html', {'organizer': organizer, 'activities': activities})
