@@ -97,4 +97,12 @@ class ParticipantBookingsView(View):
         participant = get_object_or_404(Participant, id_number=id_number)
         bookings = Booking.objects.filter(participant=participant) 
 
-        return render(request, 'bookings/organizer/participant_detail.html', {'participant': participant, 'bookings': bookings})
+        return render(request, 'bookings/participant/participant_detail.html', {'participant': participant, 'bookings': bookings})
+    
+
+class BookingDeleteView(View):
+    def post(self, request, booking_id, id_number, *args, **kwargs):
+        activity = get_object_or_404(Booking, pk=booking_id)
+        activity.delete()
+
+        return redirect('booking_summary', id_number=id_number)

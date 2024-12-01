@@ -1,7 +1,7 @@
 # urls.py in your app directory
 from django.urls import path
 from .views import OrganizerCreateView, OrganizerListView, OrganizerDetailView, OrganizerUpdateView, OrganizerDeleteView
-from .views import ActivityCreateView, ActivityListView, ActivityDetailView, ActivityUpdateView, ActivityDeleteView, ParticipantBookingsView
+from .views import ActivityCreateView, ActivityListView, ActivityDetailView, ActivityUpdateView, ActivityDeleteView, BookingDeleteView, ParticipantBookingsView
 
 urlpatterns = [
     path('organizers/', OrganizerListView.as_view(), name='organizer_list'),
@@ -17,5 +17,7 @@ urlpatterns = [
     path('activity/delete/<int:activity_id>/', ActivityDeleteView.as_view(), name='activity_delete'),
 
     path('bookings/<int:id_number>/', ParticipantBookingsView.as_view(), name='booking_summary'),
+        path('bookings/delete/<int:booking_id>/<int:id_number>/', BookingDeleteView.as_view(), name='booking_delete'),
+
 
 ]
