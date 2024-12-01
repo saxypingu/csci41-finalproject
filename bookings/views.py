@@ -4,8 +4,8 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from .models import Organizer, Activity
-from .forms import OrganizerForm, ActivityForm
+from .models import Organizer, Contact_Person, Activity
+from .forms import OrganizerForm, ContactPersonForm, ActivityForm
 
 class OrganizerCreateView(View):    
     def get(self, request, *args, **kwargs):
@@ -18,7 +18,30 @@ class OrganizerCreateView(View):
             form.save()
             return redirect('organizer_list')  # Redirect to the list of organizers
         return render(request, 'bookings/organizer/organizer_form.html', {'form': form})
-
+    
+def org_create(request):
+    if request.method == 'POST':
+        orgform = OrganizerForm(request.POST, prefix='organizer')
+        conform = ContactPersonForm(request.POST, prefix='contact')
+        if orgform.is_valid() and conform.is_valid():
+            organizer = Organizer()
+            contact_person = Contact_Person()
+            organizer.name = orgform.cleaned_data.get('name')
+            organizer.organizer_type = orgform.cleaned_data.get('organizer_type')
+            organizer.address = orgform.cleaned_data.get('address')
+            contact_person.contact_email = conform.cleaned_data.get('contact_email')
+            contact_person.contact_name = conform.cleaned_data.get('contact_name')
+            contact_person.contact_phone = conform.cleaned_data.get('contact_phone')
+            contact_person.save()   
+            organizer.contact_person = contact_person
+            organizer.save()
+            return redirect('organizer_detail', organizer.organizer_id)
+    else:
+        orgform = OrganizerForm(prefix='organizer')
+        conform = ContactPersonForm(prefix='contact')
+    return render(request, 'bookings/organizer/organizer_form.html', {'orgform': orgform,
+                                                                            'conform': conform})
+        
 class OrganizerListView(View):
     def get(self, request, *args, **kwargs):
         organizers = Organizer.objects.all()
