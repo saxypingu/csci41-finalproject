@@ -4,7 +4,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Activity List</title>
+		<title>{{ organizer.name }}</title>
 		<link rel="stylesheet" href="{% static 'css/organizer_info.css' %}" />
         		<link rel="stylesheet" href="{% static 'css/activity.css' %}" />
 
@@ -26,9 +26,9 @@
                 <div class='detail-info'>
                     <p><strong>Type: </strong>{{ organizer.organizer_type }}</p>
                     <p><strong>Address: </strong>{{ organizer.address }}</p>
-                    <p><strong>Contact Person: </strong>{{ organizer.contact_person_name }}</p>
-                    <p><strong>Contact Email: </strong>{{ organizer.contact_person_email }}</p>
-                    <p><strong>Contact Number: </strong>{{ organizer.contact_person_phone }}</p>
+                    <p><strong>Contact Person: </strong>{{ organizer.contact_person.contact_name }}</p>
+                    <p><strong>Contact Email: </strong>{{ organizer.contact_person.contact_email }}</p>
+                    <p><strong>Contact Number: </strong>{{ organizer.contact_person.contact_phone }}</p>
                 </div>
                
                 <div class='detail-btn-container'>

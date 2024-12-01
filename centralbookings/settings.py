@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'bookings'
 ]
 
-AUTH_USER_MODEL = 'bookings.ParticipantUser'
+# AUTH_USER_MODEL = 'bookings.ParticipantUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'bookings.NewUser'

@@ -12,7 +12,9 @@
 		<body>
 			<h1>Create New Organizer</h1>
 			<form method="POST">
-				{% csrf_token %} {{ form.as_p }}
+				{% csrf_token %}
+				{{ orgform }}
+            	{{ conform }}
 
 				<div class="form-btn-container">
 					<a class="back-btn-container" href="{% url 'organizer_list' %}">
