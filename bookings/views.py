@@ -4,13 +4,8 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-<<<<<<< HEAD
-from .models import Organizer, Activity, Participant, Booking
-from .forms import OrganizerForm, ActivityForm, ParticipantForm, BookingForm
-=======
 from .models import Organizer, Contact_Person, Activity
 from .forms import OrganizerForm, ContactPersonForm, ActivityForm
->>>>>>> 11ea4086a8b8e134640da18100710bb7f5c83526
 
 class OrganizerCreateView(View):    
     def get(self, request, *args, **kwargs):
@@ -143,27 +138,27 @@ class ActivityDeleteView(View):
         activity.delete()
         return redirect('activity_list')
     
-# class BookingCreateView(View):    
-#     def get(self, request, *args, **kwargs):
-#         form = BookingForm()
-#         return render(request, 'bookings/booking/booking_form.html', {'form': form})
+class BookingCreateView(View):    
+    def get(self, request, *args, **kwargs):
+        form = BookingForm()
+        return render(request, 'bookings/booking/booking_form.html', {'form': form})
 
-#     def post(self, request, *args, **kwargs):
-#         form = BookingForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('booking_list')  # Redirect to the list of participants
-#         return render(request, 'bookings/booking/booking_form.html', {'form': form})
+    def post(self, request, *args, **kwargs):
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('booking_list')  # Redirect to the list of participants
+        return render(request, 'bookings/booking/booking_form.html', {'form': form})
 
-# class BookingListView(View):
-#     def get(self, request, *args, **kwargs):
-#         bookings = Booking.objects.all()
-#         return render(request, 'bookings/booking/booking_list.html', {'bookings': bookings})
+class BookingListView(View):
+    def get(self, request, *args, **kwargs):
+        bookings = Booking.objects.all()
+        return render(request, 'bookings/booking/booking_list.html', {'bookings': bookings})
 
-# class BookingDetailView(View):
-#     def get(self, request, activity_id, *args, **kwargs):
-#         booking = get_object_or_404(Participant, pk=activity_id)
-#         return render(request, 'bookings/booking/booking_detail.html', {'booking': booking})
+class BookingDetailView(View):
+    def get(self, request, activity_id, *args, **kwargs):
+        booking = get_object_or_404(Participant, pk=activity_id)
+        return render(request, 'bookings/booking/booking_detail.html', {'booking': booking})
 
 # class Charm(View):
 #     def get(self, request, organizer_id, *args, **kwargs):

@@ -2,6 +2,7 @@
 from django.urls import path
 from .views import OrganizerListView, OrganizerDetailView, OrganizerUpdateView, OrganizerDeleteView, org_create
 from .views import ActivityCreateView, ActivityListView, ActivityDetailView, ActivityUpdateView, ActivityDeleteView
+from .views import ParticipantCreateView, ParticipantDetailView, ParticipantListView
 from .views import BookingCreateView, BookingListView, BookingDetailView
 
 urlpatterns = [
