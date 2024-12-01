@@ -10,7 +10,8 @@
         <h1>Create New Organizer</h1>
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ orgform }}
+            {{ conform }}
             <button type="submit">Save</button>
         </form>
     </body>

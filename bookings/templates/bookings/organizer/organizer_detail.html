@@ -10,9 +10,9 @@
         <h1>{{ organizer.name }}</h1>
         <p><strong>Type:</strong> {{ organizer.organizer_type }}</p>
         <p><strong>Address:</strong> {{ organizer.address }}</p>
-        <p><strong>Contact Person:</strong> {{ organizer.contact_name }}</p>
-        <p><strong>Contact Email:</strong> {{ organizer.contact_email }}</p>
-        <p><strong>Contact Number:</strong> {{ organizer.contact_phone }}</p>
+        <p><strong>Contact Person:</strong> {{ organizer.contact_person.contact_name }}</p>
+        <p><strong>Contact Email:</strong> {{ organizer.contact_person.contact_email }}</p>
+        <p><strong>Contact Number:</strong> {{ organizer.contact_person.contact_phone }}</p>
 
         <a href="{% url 'organizer_list' %}">Organizer List</a>  
     </body>

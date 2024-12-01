@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Organizer(models.Model):
     # Defining custom id for the Organizer model; following conventions in specifications
@@ -10,15 +11,21 @@ class Organizer(models.Model):
     )
     organizer_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     address = models.TextField()
-    contact_email = models.ForeignKey('Contact_Person', related_name='organizer', on_delete=models.CASCADE)
+    contact_person = models.ForeignKey('Contact_Person', related_name='organizer', on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('bookings:organizer_detail', args=[self.pk])
 
 class Contact_Person(models.Model):
     contact_name = models.CharField(max_length=128)
     contact_email = models.EmailField(max_length=128, unique=True)
     contact_phone = models.CharField(max_length=16, unique=True)
+    
+    def __str__(self):
+        return self.contact_name
 
 class Activity(models.Model):
     organizer = models.ForeignKey('Organizer', related_name='activities', on_delete=models.CASCADE)
