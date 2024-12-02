@@ -1,5 +1,4 @@
 from django import forms
-from .models import Organizer, Activity
 from .models import Organizer, Contact_Person, Activity, Participant
 
 class OrganizerForm(forms.ModelForm):

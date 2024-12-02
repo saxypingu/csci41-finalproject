@@ -2,22 +2,8 @@
 from django.views import View
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from .models import Organizer, Activity, Participant, Booking
-from .forms import OrganizerForm, ActivityForm
 from .models import Organizer, Contact_Person, Activity, Participant
 from .forms import OrganizerForm, ContactPersonForm, ActivityForm, ParticipantForm
-
-class OrganizerCreateView(View):    
-    def get(self, request, *args, **kwargs):
-        form = OrganizerForm()
-        return render(request, 'bookings/organizer/organizer_form.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = OrganizerForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('organizer_list')  # Redirect to the list of organizers
-        return render(request, 'bookings/organizer/organizer_form.html', {'form': form})
     
 def org_create(request):
     if request.method == 'POST':
