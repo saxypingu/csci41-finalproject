@@ -69,9 +69,9 @@
 
                         <div class="al-header">
                             <a href="{% url 'activity_detail' activity.id %}"> <h2>{{ activity.name }}</h2> </a>
-                            <div class="btn-container">
+                            {% comment %} <div class="btn-container">
 						        <a href=""><button>Book Activity</button></a>
-					        </div>
+					        </div> {% endcomment %}
                         </div>
 						<hr />
 	
