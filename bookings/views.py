@@ -1,11 +1,11 @@
 # views.py
 from django.views import View
-from django.http import HttpResponse
-
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from .models import Organizer, Contact_Person, Activity
-from .forms import OrganizerForm, ContactPersonForm, ActivityForm
+from .models import Organizer, Activity, Participant, Booking
+from .forms import OrganizerForm, ActivityForm
+from .models import Organizer, Contact_Person, Activity, Participant
+from .forms import OrganizerForm, ContactPersonForm, ActivityForm, ParticipantForm
 
 class OrganizerCreateView(View):    
     def get(self, request, *args, **kwargs):
@@ -114,3 +114,45 @@ class ActivityDeleteView(View):
         activity = get_object_or_404(Activity, pk=activity_id)
         activity.delete()
         return redirect('activity_list')
+
+class ParticipantCreateView(View):    
+    def get(self, request, *args, **kwargs):
+        form = ParticipantForm()
+        return render(request, 'bookings/participant/participant_form.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = ParticipantForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('participant_list')  # Redirect to the list of activities
+        return render(request, 'bookings/participant/participant_form.html', {'form': form})
+
+class ParticipantListView(View):
+    def get(self, request, *args, **kwargs):
+        participants = Participant.objects.all()
+        return render(request, 'bookings/participant/participant_list.html', {'participants': participants})
+
+class ParticipantDetailView(View):
+    def get(self, request, participant_id, *args, **kwargs):
+        participant = get_object_or_404(Participant, pk=participant_id)
+        return render(request, 'bookings/participant/participant_detail.html', {'participant': participant})
+
+class ParticipantUpdateView(View):
+    def get(self, request, participant_id, *args, **kwargs):
+        participant = get_object_or_404(Participant, pk=participant_id)
+        form = ParticipantForm(instance=participant)
+        return render(request, 'bookings/participant/participant_form.html', {'form': form, 'participant': participant})
+
+    def post(self, request, participant_id, *args, **kwargs):
+        participant = get_object_or_404(Participant, pk=participant_id)
+        form = ParticipantForm(request.POST, instance=participant)
+        if form.is_valid():
+            form.save()
+            return redirect('participant_detail', participant_id=participant.id_number)
+        return render(request, 'bookings/participant/participant_form.html', {'form': form, 'participant': participant})
+
+class ParticipantDeleteView(View):
+    def post(self, request, participant_id, *args, **kwargs):
+        participant = get_object_or_404(Participant, pk=participant_id)
+        participant.delete()
+        return redirect('participant_list')

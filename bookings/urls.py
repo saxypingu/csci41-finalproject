@@ -2,6 +2,7 @@
 from django.urls import path
 from .views import OrganizerListView, OrganizerDetailView, OrganizerUpdateView, OrganizerDeleteView, org_create
 from .views import ActivityCreateView, ActivityListView, ActivityDetailView, ActivityUpdateView, ActivityDeleteView
+from .views import ParticipantCreateView, ParticipantListView, ParticipantDetailView, ParticipantUpdateView, ParticipantDeleteView
 
 urlpatterns = [
     path('organizers/', OrganizerListView.as_view(), name='organizer_list'),
@@ -15,4 +16,10 @@ urlpatterns = [
     path('activity/<int:activity_id>/', ActivityDetailView.as_view(), name='activity_detail'),
     path('activity/edit/<int:activity_id>', ActivityUpdateView.as_view(), name='activity_update'),
     path('activity/delete/<int:activity_id>/', ActivityDeleteView.as_view(), name='activity_delete'),
+    
+    path('participants/', ParticipantListView.as_view(), name='participant_list'),
+    path('participant/create/', ParticipantCreateView.as_view(), name='participant_create'),
+    path('participant/<int:participant_id>/', ParticipantDetailView.as_view(), name='participant_detail'),
+    path('participant/edit/<int:participant_id>', ParticipantUpdateView.as_view(), name='participant_update'),
+    path('participant/delete/<int:participant_id>/', ParticipantDeleteView.as_view(), name='participant_delete'),
 ]
